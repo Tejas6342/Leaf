@@ -45,7 +45,7 @@ In the **Files** panel (left sidebar ▸ 📁 icon), click **Upload** and select
 
 The notebook will:
 1. Install `python-pptx` (the only extra dependency).
-2. Load and concatenate all 20 CSVs into one combined DataFrame (51 707 rows).
+2. Load and concatenate all 20 CSVs into one combined DataFrame (51,707 rows).
 3. Clean column names and drop the spurious `Unnamed: 0` index column.
 4. Compute three summary tables:
    - Average `realsum` by city.
@@ -55,7 +55,7 @@ The notebook will:
    - **Bar chart** — average price by city.
    - **Grouped bar chart** — weekdays vs weekends by city.
    - **Box plot** — price distribution by room type.
-   - **Scatter plot** — price vs person capacity (8 000-row sample).
+   - **Scatter plot** — price vs person capacity (8,000-row sample).
    - **Line chart** — average price by person capacity.
 6. Build a 9-slide PPTX presentation including title, dataset overview, all five charts with captions, key findings, and conclusions.
 7. Save the file to `/content/Airbnb_Europe_Analysis.pptx` and trigger an automatic browser download.
