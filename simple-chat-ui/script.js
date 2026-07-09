@@ -15,18 +15,28 @@ const chats = [
   {
     id: 3,
     name: 'Noah',
-    messages: [{ sender: 'bot', text: 'Ready for a quick chat?' }],
+    messages: [{ sender: 'bot', text: 'Hey Noah here — what are you working on?' }],
   },
-];
-
-const localResponses = [
-  'Sounds good to me!',
-  'Nice — tell me more.',
-  'Okay, I understand.',
-  'That is interesting 👀',
-  'Can you explain a bit more?',
-  'Great point!',
-  'I am here if you need help.',
+  {
+    id: 4,
+    name: 'Emma',
+    messages: [{ sender: 'bot', text: 'Hi! Want to share an update?' }],
+  },
+  {
+    id: 5,
+    name: 'Liam',
+    messages: [{ sender: 'bot', text: 'Hello 👋 How is your day going?' }],
+  },
+  {
+    id: 6,
+    name: 'Sophia',
+    messages: [{ sender: 'bot', text: 'Hi! Tell me what you need help with.' }],
+  },
+  {
+    id: 7,
+    name: 'Ethan',
+    messages: [{ sender: 'bot', text: 'Hey, I am listening.' }],
+  },
 ];
 
 let activeChatId = chats[0].id;
@@ -113,6 +123,9 @@ function render() {
 
 function getLocalResponse(text) {
   const lower = text.toLowerCase();
+  const cleanedText = text.replace(/\s+/g, ' ').trim();
+  const shortText =
+    cleanedText.length > 80 ? `${cleanedText.slice(0, 80).trimEnd()}...` : cleanedText;
 
   if (lower.includes('hi') || lower.includes('hello')) {
     return 'Hello! 👋';
@@ -123,9 +136,25 @@ function getLocalResponse(text) {
   if (lower.includes('bye')) {
     return 'Bye! Talk soon.';
   }
+  if (lower.includes('?')) {
+    return `Good question about "${shortText}". Share a bit more detail and I will answer clearly.`;
+  }
+  if (
+    lower.includes('error') ||
+    lower.includes('bug') ||
+    lower.includes('issue') ||
+    lower.includes('problem')
+  ) {
+    return `I understand there is an issue: "${shortText}". What exactly is failing right now?`;
+  }
+  if (lower.includes('thanks') || lower.includes('thank you')) {
+    return 'You are welcome! If needed, send the next detail and I will continue.';
+  }
+  if (lower.includes('project') || lower.includes('work') || lower.includes('task')) {
+    return `Got it — "${shortText}" sounds important. What is your next step on it?`;
+  }
 
-  const randomIndex = Math.floor(Math.random() * localResponses.length);
-  return localResponses[randomIndex];
+  return `Got it: "${shortText}". Tell me one more detail so I can respond better.`;
 }
 
 messageForm.addEventListener('submit', (event) => {
