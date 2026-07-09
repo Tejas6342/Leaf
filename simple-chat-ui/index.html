@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Local Chat UI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <h1>Chats</h1>
+        <div id="chatList" class="chat-list"></div>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div class="chat-user">
+            <div id="activeAvatar" class="avatar"></div>
+            <div>
+              <h2 id="activeName"></h2>
+              <p id="callStatus" class="status">Online</p>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="audioCallBtn" class="action-btn">📞 Call</button>
+            <button id="videoCallBtn" class="action-btn">🎥 Video</button>
+          </div>
+        </header>
+
+        <section id="messages" class="messages"></section>
+
+        <form id="messageForm" class="composer">
+          <input
+            id="messageInput"
+            type="text"
+            placeholder="Type a message..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <div id="callOverlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-card">
+        <div id="overlayAvatar" class="avatar large"></div>
+        <h3 id="overlayName"></h3>
+        <p id="overlayText">Calling...</p>
+        <button id="endCallBtn" class="end-btn">End Call</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
